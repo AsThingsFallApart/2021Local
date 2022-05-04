@@ -48,16 +48,16 @@ int main() {
 
   // there are four output cases: 1.) "17", 2.) "18", 3.) "both", 4.) "none"
   if(seventeen && eighteen) {
-    cout << "both";
+    cout << "both" << "\n";
   }
   else if(seventeen) {
-    cout << "17";
+    cout << "17" << "\n";
   }
   else if(eighteen) {
-    cout << "18";
+    cout << "18" << "\n";
   }
   else {
-    cout << "none";
+    cout << "none" << "\n";
   }
 
   return 0;
