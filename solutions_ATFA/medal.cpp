@@ -45,10 +45,6 @@ int main() {
     }
   }
 
-  //for(i = 0; i < 6; i++) {
-    //cout << medalCount[i] << endl;
-  //}
-
   // check for win cons
   // USA wins by color:
   if(medalCount[0] > medalCount[3]) {
@@ -57,7 +53,7 @@ int main() {
   else if((medalCount[1] > medalCount[4]) && !(medalCount[0] < medalCount[3])) {
     winByColor = true;
   }
-  else if((medalCount[2] > medalCount[5]) && !(medalCount[1] < medalCount[4])) {
+  else if((medalCount[2] > medalCount[5]) && !(medalCount[0] < medalCount[3]) && !(medalCount[1] < medalCount[4])) {
     winByColor = true;
   }
 
@@ -68,16 +64,16 @@ int main() {
 
   // print win cons:
   if(winByColor && winByCount) {
-    cout << "both";
+    cout << "both" << "\n";
   }
   else if(winByColor) {
-    cout << "color";
+    cout << "color" << "\n";
   }
   else if(winByCount) {
-    cout << "count";
+    cout << "count" << "\n";
   }
   else {
-    cout << "none";
+    cout << "none" << "\n";
   }
 
   return 0;
