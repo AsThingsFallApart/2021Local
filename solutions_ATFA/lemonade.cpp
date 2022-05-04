@@ -256,7 +256,7 @@ int main() {
 
   minimumCostTotal = minimumCostLemons + minimumCostSugar;
   //cout << "\n\nminimumCostTotal: " << minimumCostTotal;
-  cout << minimumCostTotal;
+  cout << minimumCostTotal << "\n";
 
   return 0;
 }
