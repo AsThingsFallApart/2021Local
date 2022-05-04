@@ -1,4 +1,4 @@
 # ignore directories frequently written/rewritten by 'verify.sh'
-/data/input
-/data/output
-/data/output_trusted
+/data/input/*
+/data/output/*
+/data/output_trusted/*
