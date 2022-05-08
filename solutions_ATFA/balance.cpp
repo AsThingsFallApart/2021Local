@@ -30,6 +30,8 @@ using namespace std;
 
 int main() {
   int64_t countBalancedCombos = 0;
+  int countVowels = 0;
+  int countConsonants = 0;
 
   string givenString = "";
   cin >> givenString;
@@ -39,8 +41,45 @@ int main() {
   // two edge cases when givenString has no '?' chars:
   // if 'givenString' does not include any question mark characters
   if(questionMarkExists == string::npos) {
-    // check if balanced:
-    cout << "no question marks";
+    // calculate ratio of consonants to vowels
+    for(char x : givenString) {
+      switch(x) {
+      case 'a':
+        countVowels++;
+        break;
+      case 'e':
+        countVowels++;
+        break;
+      case 'i':
+        countVowels++;
+        break;
+      case 'o':
+        countVowels++;
+        break;
+      case 'u':
+        countVowels++;
+        break;
+      case 'y':
+        countVowels++;
+        break;
+      default:
+        countConsonants++;
+        break;
+      }
+    }
+
+    cout << "countVowels: " << countVowels << "\n";
+    cout << "countConsonants: " << countConsonants << "\n";
+
+    // case: givenString has no question marks and is unbalanced
+    if(countVowels != countConsonants) {
+      cout << countBalancedCombos;
+    }
+    // case: givenString has no questions marks and is BALANCED
+    else {
+      countBalancedCombos = 1;
+      cout << countBalancedCombos;
+    }
   }
   else {
     cout << "question marks found";
