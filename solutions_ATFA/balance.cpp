@@ -110,25 +110,32 @@ int main() {
     for(i = 0; i < givenString.length(); i++) {
       if(determineLetterType(givenString[i]) == 1 || determineLetterType(givenString[i]) == 2) {
         rippleStartIndex = i;
-        currentString.push_back(givenString[i]);
+//        currentString.push_back(givenString[i]);
         break;
       }
     }
 
-    cout << "\nrippleStartIndex: " << rippleStartIndex << "\n";
+//    cout << "\nrippleStartIndex: " << rippleStartIndex << "\n";
 
 
-    cout << "\nRIPPLE LEFT\n";
+//    cout << "\nRIPPLE LEFT:\n";
     // ripple left towards index 0
     for(i = rippleStartIndex; i >= 0; i--) {
+//      cout << "i: " << i << "\n";
       // skip comparing the rippleStartIndex element since its a known constant
       if(i == rippleStartIndex) {
         continue;
       }
+//
+//      cout << "\tgivenString[i]: " << givenString[i] << "\n";
+//      cout << "\tgivenString[i + 1]: " << givenString[i + 1] << "\n";
 
       // get letter types
       letterTypeCurrent = determineLetterType(givenString[i]);
       letterTypePredecessor = determineLetterType(givenString[i + 1]);
+//
+//      cout << "\tletterTypeCurrent: " << letterTypeCurrent << "\n";
+//      cout << "\tletterTypePredecessor: " << letterTypePredecessor << "\n";
 
       // substitute if letter type is 3
       if(letterTypeCurrent == 3) {
@@ -136,6 +143,7 @@ int main() {
         if(letterTypePredecessor == 2) {
           // the current question mark must become a consonant
           substitutedConsonants++;
+          givenString[i] = 'b';
 
           // for debugging/visualization:
           temp = "b";
@@ -144,37 +152,44 @@ int main() {
         else if(letterTypePredecessor == 1) {
           // the current question mark must become a vowel
           substitutedVowels++;
+          givenString[i] = 'a';
 
           temp = "a";
         }
       }
-      else {
-        temp.push_back(givenString[i]);
-      }
+//      else {
+//        temp.push_back(givenString[i]);
+//      }
 
       // always add to debugging string
-      temp.append(currentString);
-      currentString = temp;
-      temp = "";
-      cout << currentString << "\n";
+//      temp.append(currentString);
+//      currentString = temp;
+//      temp = "";
+//      cout << "\tcurrentString:" << currentString << "\n";
 
       if(letterTypeCurrent == letterTypePredecessor) {
-        cout << "\n[ FUNDAMENTALLY UNBALANCEABLE ]\n" << "'" << givenString[i] << "'" << " adjacent to " << "'" << givenString[i + 1] << "'\n";
+//        cout << "\n[ FUNDAMENTALLY UNBALANCEABLE ]\n" << "'" << givenString[i] << "'" << " adjacent to " << "'" << givenString[i + 1] << "'\n";
         fundamentallyBalanceable = false;
         break;
       }
     }
-
-    cout << "\nRIPPLE RIGHT\n";
+//
+//    cout << "\nRIPPLE RIGHT:\n";
     // ripple right towards index (givenString.length() - 1)
     for(i = rippleStartIndex; i < givenString.length(); i++) {
+//      cout << "i: " << i << "\n";
       if(i == rippleStartIndex) {
         continue;
       }
 
+
+
       // get letter types
       letterTypeCurrent = determineLetterType(givenString[i]);
       letterTypePredecessor = determineLetterType(givenString[i - 1]);
+//
+//      cout << "\tletterTypeCurrent: " << letterTypeCurrent << "\n";
+//      cout << "\tletterTypePredecessor: " << letterTypePredecessor << "\n";
 
       // substitute if letter type is 3
       if(letterTypeCurrent == 3) {
@@ -182,6 +197,7 @@ int main() {
         if(letterTypePredecessor == 2) {
           // the current question mark must become a consonant
           substitutedConsonants++;
+          givenString[i] = 'b';
 
           // for debugging/visualization:
           temp = "b";
@@ -190,21 +206,22 @@ int main() {
         else if(letterTypePredecessor == 1) {
           // the current question mark must become a vowel
           substitutedVowels++;
+          givenString[i] = 'a';
 
           temp = "a";
         }
       }
-      else {
-        temp.push_back(givenString[i]);
-      }
+//      else {
+//        temp.push_back(givenString[i]);
+//      }
 
       // always add to debugging string
       currentString.append(temp);
       temp = "";
-      cout << currentString << "\n";
+//      cout << "\tcurrentString: " << currentString << "\n";
 
       if(letterTypeCurrent == letterTypePredecessor) {
-        cout << "\n[ FUNDAMENTALLY UNBALANCEABLE ]\n" << "'" << givenString[i] << "'" << " adjacent to " << "'" << givenString[i - 1] << "'\n";
+//        cout << "\n[ FUNDAMENTALLY UNBALANCEABLE ]\n" << "'" << givenString[i] << "'" << " adjacent to " << "'" << givenString[i - 1] << "'\n";
         fundamentallyBalanceable = false;
         break;
       }
@@ -231,14 +248,14 @@ int main() {
 
     countBalancedPermutations = possibleConsonants * possibleVowels;
 
-
-    cout << "\ngivenString.length(): " << givenString.length() << "\n";
-    cout << "questionMarkExists: " << questionMarkExists << "\n";
-    cout << "substitutedVowels: " << substitutedVowels << "\n";
-    cout << "subsitutedConsonants: " << substitutedConsonants << "\n";
-    cout << "possibleConsonants: " << possibleConsonants << "\n";
-    cout << "possibleVowels: " << possibleVowels << "\n";
-    cout << "countBalancedPermutations: " << countBalancedPermutations << "\n";
+//
+//    cout << "\ngivenString.length(): " << givenString.length() << "\n";
+//    cout << "questionMarkExists: " << questionMarkExists << "\n";
+//    cout << "substitutedVowels: " << substitutedVowels << "\n";
+//    cout << "subsitutedConsonants: " << substitutedConsonants << "\n";
+//    cout << "possibleConsonants: " << possibleConsonants << "\n";
+//    cout << "possibleVowels: " << possibleVowels << "\n";
+//    cout << "countBalancedPermutations: " << countBalancedPermutations << "\n";
 
     if(fundamentallyBalanceable == false) {
       cout << 0 << "\n";
