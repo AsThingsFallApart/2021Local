@@ -29,13 +29,22 @@
 using namespace std;
 
 int main() {
-  int64_t countBalancedCombos = 0;
+
+  int i = 0;
+
+  int64_t countBalancedPermutations = 0;
+  int64_t baseConsonant = 1;
+  int64_t baseVowel = 1;
   int countVowels = 0;
   int countConsonants = 0;
+  int countQuestionMarks = 0;
+  int necessaryVowelsForBalance = 0;
+  int necessaryConsonantsForBalance = 0;
 
   string givenString = "";
   cin >> givenString;
 
+  // variable 'questionMarkExists' will be the index of the first question mark found
   size_t questionMarkExists = givenString.find("?");
 
   // two edge cases when givenString has no '?' chars:
@@ -73,25 +82,87 @@ int main() {
 
     // case: givenString has no question marks and is unbalanced
     if(countVowels != countConsonants) {
-      cout << countBalancedCombos;
+      cout << countBalancedPermutations;
     }
     // case: givenString has no questions marks and is BALANCED
     else {
-      countBalancedCombos = 1;
-      cout << countBalancedCombos;
+      countBalancedPermutations = 1;
+      cout << countBalancedPermutations;
     }
   }
+
+  // handle when givenString has AT LEAST one question mark
   else {
-    cout << "question marks found";
+    // two possible cases: (1) length of givenString is odd, (2) length is even
+    // case(1): givenString is odd
+    if(givenString.length() % 2 != 0) {
+
+    }
+
+    // case(2): givenString is even
+    else {
+      // calculate number of possible different vowel/consonant combinations
+      for(char x : givenString) {
+        switch(x) {
+        case 'a':
+          countVowels++;
+          break;
+        case 'e':
+          countVowels++;
+          break;
+        case 'i':
+          countVowels++;
+          break;
+        case 'o':
+          countVowels++;
+          break;
+        case 'u':
+          countVowels++;
+          break;
+        case 'y':
+          countVowels++;
+          break;
+        case '?':
+          countQuestionMarks++;
+          break;
+        default:
+          countConsonants++;
+          break;
+        }
+      }
+
+      necessaryConsonantsForBalance = (givenString.length() / 2) - countConsonants;
+      necessaryVowelsForBalance = (givenString.length() / 2) - countVowels;
+
+      // power function as a for loop to avoid messing with int64_t data type mismatches
+      for(i = 0; i < necessaryConsonantsForBalance; i++) {
+        baseConsonant *= 20;
+//        cout << "baseConsonant: " << baseConsonant << "\n";
+      }
+
+      for(i = 0; i < necessaryVowelsForBalance; i++) {
+        baseVowel *= 6;
+//        cout << "baseVowel: " << baseVowel << "\n";
+
+      }
+
+      countBalancedPermutations = baseVowel * baseConsonant;
+    }
+
+
+//    cout << "givenString.length(): " << givenString.length() << "\n";
+//    cout << "questionMarkExists: " << questionMarkExists << "\n";
+//    cout << "countVowels: " << countVowels << "\n";
+//    cout << "countConsonants: " << countConsonants << "\n";
+//    cout << "countQuestionMarks: " << countQuestionMarks << "\n";
+//    cout << "neccessaryConsonantsForBalance: " << necessaryConsonantsForBalance << "\n";
+//    cout << "necessaryVowelsForBalance: " << necessaryVowelsForBalance << "\n";
+//    cout << "baseConsonant: " << baseConsonant << "\n";
+//    cout << "baseVowel: " << baseVowel << "\n";
+//    cout << "countBalancedPermutations: " << countBalancedPermutations << "\n";
   }
 
+  cout << countBalancedPermutations << "\n";
+
   return 0;
-}
-
-bool calculateBalance(string inspected) {
-  bool balanced = false;
-  int countVowels = 0;
-  int countConsonants = 0;
-
-  return balanced;
 }
